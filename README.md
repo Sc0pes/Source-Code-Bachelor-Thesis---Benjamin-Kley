@@ -1,9 +1,12 @@
-Hello and welcome to my Bachelor Thesis source code!
+# Focusing on the Universe – Comparing Deconvolution Algorithms in Astronomy
+
+Welcome to the source code for my bachelor thesis *"Focusing on the Universe - Comparing Deconvolution Algorithms in Astronomy"* (Eberhard Karls University of Tübingen).  
+This repository contains implementations, experiments, and supporting code to explore and compare different astronomical deconvolution algorithms.  
+To be clear, I do not claim the code is perfect, or completely functional as published for that matter. This code is primarily intended for 
+**exploration, reproducibility, and understanding the results of my thesis**.
 
 All of the functions should be called from main, the most important functions will be create_data_set(), which takes multiple
 tuples of the form (BooleanForEffect, EffectStrength). This and all the other functions become pretty self explanatory.
-To be clear, I do not claim the code is perfect, or completely functional as published for that matter. However, this code is meant for exploration and to retrace as well as understand the
-results of my thesis better. 
 
 Important notes:
 - The source code for the MATLAB code of Perrone et al. is available at: https://www.cvg.unibe.ch/media/project/perrone/tvdb/. However,
@@ -14,7 +17,7 @@ recreation of the final results of my paper. The naming convention is: deblur_la
 - all images in the data-set are 32 bit float fits images
 - Additionally to the TV/BlurX results, in every "./data-set/done/folderName" folder, the reference image (ending: ref.fits), the blurred image (ending: blur.fits), the given blur kernel (ending: psf.fits), the extracted blur kernel (ending: extracted.psf)
 - The three reference images are available in "./reference_images" and were acquired from the Hubble Legacy archive (https://hla.stsci.edu/) and MAST (https://archive.stsci.edu/hst/)
-- The implementation for STARRED is available and should be functional, however, incase of problems visit: https://gitlab.com/cosmograil/starred , which is the gitab repo of the COSMOGRAIL team.
+- The implementation for STARRED is available and should be functional once the STARRRED gitlab repo has been installed. Incase of problems and for the repo visit: https://gitlab.com/cosmograil/starred , which is the gitab repo of the COSMOGRAIL team.
 
 Short explanation for every class:
 main.py:
@@ -38,6 +41,14 @@ This class implements all image degrading functions for PSF creation and spatial
 
 Convergence.py:
 Measures most of the convergence for each of the algorithms/outputs of the algorithms. 
+
+External Libraries used and therefore requirements:
+- numpy
+- matplotlib
+- scipy
+- scikit-image
+- astropy
+- photutils
 
 
 Thank you! If you have any questions, please contact me at: benjamin.kley@web.de.
