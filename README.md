@@ -7,11 +7,13 @@ results of my thesis better.
 
 Important notes:
 - The source code for the MATLAB code of Perrone et al. is available at: https://www.cvg.unibe.ch/media/project/perrone/tvdb/. However,
-the images deconvolved are in the data-set/done/folderName/deconvolved/tv folder and can be used for comparison and of course for the 
+the images deconvolved are in the "./data-set/done/folderName/deconvolved/tv" folder and can be used for comparison and of course for the 
 recreation of the final results of my paper. The naming convention is: deblur_lambda_imageNumber_LambdaValue so e.g.: deblur_lambda_01_9e-07.fits = image number 1, lambda value: 9e-7.
 - The same goes for BlurXTerminator: As the software is commercially available, the results used for the comparison in my thesis are available under
-data-set/done/folderName/deconvolved/blur. The naming convention is: stellarDeconStrengthNonStellarDeconStrength so e.g.: 1640.fits = stellar strength = 0.16, non-stellar strength = 0.4.
+"./data-set/done/folderName/deconvolved/blur". The naming convention is: stellarDeconStrengthNonStellarDeconStrength so e.g.: 1640.fits = stellar strength = 0.16, non-stellar strength = 0.4.
 - all images in the data-set are 32 bit float fits images
+- Additionally to the TV/BlurX results, in every "./data-set/done/folderName" folder, the reference image (ending: ref.fits), the blurred image (ending: blur.fits), the given blur kernel (ending: psf.fits), the extracted blur kernel (ending: extracted.psf)
+- The three reference images are available in "./reference_images" and were acquired from the Hubble Legacy archive (https://hla.stsci.edu/) and MAST (https://archive.stsci.edu/hst/)
 - The implementation for STARRED is available and should be functional, however, incase of problems visit: https://gitlab.com/cosmograil/starred , which is the gitab repo of the COSMOGRAIL team.
 
 Short explanation for every class:

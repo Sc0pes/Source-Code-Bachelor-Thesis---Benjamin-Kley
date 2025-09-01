@@ -270,7 +270,6 @@ def compare_deblurs_BLURX(
         "ssim": float(ssim_vals[best_idx]),
         "mse": float(mse_vals[best_idx]),
         "psnr": float(psnr_vals[best_idx]),
-        "psf": (psfs[best_idx] if psfs is not None else None),
         "n1n2_pair": pairs[best_idx],
         "n1n2_label": labels[best_idx],
     }

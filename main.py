@@ -358,15 +358,13 @@ deconAlgorithms.append(["Wiener Filter", Wiener.wiener_deconvolution, iteration_
 deconAlgorithms.append(["Inverse Filter", Wiener.inverse_filter, iteration_wiener])
 
 
-def decon_and_show(image_size):
-#for every image we have in the hubble directory 
-    for image_path in image_psf_pairs:     
-        stringzzz = ["Galaxy_Gaussian-5_PSF25_512","Galaxy_Gaussian-5_Noise-20_PSF25_512","Galaxy_Gaussian-5_Noise-40_PSF25_512","Galaxy_Gaussian-5_Noise-60_PSF25_512","Galaxy_Noise-40Atmosphere-0103_PSF25_512", 
+def decon_and_show(image_size): 
+        imgStrings = ["Galaxy_Gaussian-5_Noise-20_PSF25_512","Galaxy_Gaussian-5_Noise-40_PSF25_512","Galaxy_Gaussian-5_Noise-60_PSF25_512","Galaxy_Noise-40Atmosphere-0103_PSF25_512", 
                      "Galaxy_Noise-40Atmosphere-0103_Tracking-3_NOPSF25_512", "Galaxy_Noise-40Atmosphere-0103_Coma-02_Defocus-015_NOPSF25_512","Galaxy_Noise-40Atmosphere-0103_Coma-03_NOPSF25_512", 
                      "Galaxy_Noise-40Atmosphere-0103_Defocus-03_NOPSF25_512","M42_Noise-40Atmosphere-0103_NOPSF25_512", "Jupiter_Noise-40Atmosphere-0103_Defocus-05_NOPSF25_512",
                      "Jupiter_Noise-40Atmosphere-0103_NOPSF25_512","M42_Noise-40_Coma-02_NOPSF25_512"]
         for i in range(14):
-                image_name = stringzzz[i]
+                image_name = imgStrings[i]
             
                 decon_directory = "./data-set/done/" + image_name
                 image_directory = "/" + image_name
@@ -416,7 +414,7 @@ def decon_and_show(image_size):
                                 psf=psf_stack,
                                 reference=reference,
                                 param_range=range(1, 4000),
-                                stop_delta=1e-5,
+                                stop_delta=0,
                                 image_size=image_size
                             )
                 results_RL_est = iterate_until_convergence( 
@@ -426,15 +424,24 @@ def decon_and_show(image_size):
                                 psf=est_psf,
                                 reference=reference,
                                 param_range=range(1, 4000),
-                                stop_delta=1e-5,
+                                stop_delta=0,
                                 image_size=image_size
                             )
+                best_wiener_given = results_Wiener['best_result']
+                best_wiener_est = results_Wiener_est['best_result']
+                best_rl_given = results_RL['best_result']
+                best_rl_est = results_RL_est['best_result']
+                indexTv = results_TV['best_by_ssim']['index']
+                best_tv = results_TV['images'][indexTv]
+                indexBlur = results_BLURX['best_by_ssim']['index']
+                best_blurx = results_BLURX['images'][indexBlur]
 
-                #COMPARISON
-                #compare_all(reference, blurred, results_TV, results_BLURX, results_RL, results_Wiener, results_RL_est, results_Wiener_est, result_directory, image_name)
+                #plots the best results from each of the algorithms
+                plotPictures([(center_crop(reference, 256), "Reference"),(center_crop(blurred, 256), "Blurred"),(best_wiener_given, "Wiener (given)"),
+                              (best_wiener_est, "Wiener (est)"),(best_rl_given, "RL (given)"),(best_rl_est, "RL (est)"),(best_tv, "TV"),(best_blurx, "BXT")])
+            
 
 # run program
-loadImages()
 decon_and_show(256)
 
 
